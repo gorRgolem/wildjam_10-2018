@@ -12,7 +12,6 @@ func _ready():
 
 func _physics_process(delta):
 	direction = Vector3(0, 0, 0)
-	
 	if Input.is_action_pressed("ui_left"):
 		direction.x -= 1
 	if Input.is_action_pressed("ui_right"):
@@ -24,6 +23,16 @@ func _physics_process(delta):
 	direction = direction.normalized()
 	direction = direction * speed * delta
 	
-	velocity.y += gravity * delta
+	if velocity.y > 0:
+		gravity = -20
+	else:
+		gravity = -30
 	
-	move_and_slide(direction, Vector3(0, 1, 0))
+	velocity.y += gravity * delta
+	velocity.x = direction.x
+	velocity.z = direction.z
+	
+	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
+	
+	if is_on_floor() and Input.is_key_pressed(KEY_SPACE):
+		velocity.y = 5.5
