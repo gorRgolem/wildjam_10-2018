@@ -13,7 +13,7 @@ rings = 8
 radius = 1.0
 height = 1.0
 
-[node name="Egg" type="Area" index="0"]
+[node name="Egg" type="Area"]
 
 input_ray_pickable = false
 input_capture_on_drag = false
