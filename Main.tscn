@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
@@ -8,16 +8,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player.gd" type="Script" id=7]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=8]
-
-[sub_resource type="CapsuleShape" id=1]
-
-radius = 1.0
-height = 1.0
-
-[sub_resource type="CapsuleShape" id=2]
-
-radius = 1.0
-height = 1.0
+[ext_resource path="res://Enemy.gd" type="Script" id=9]
 
 [node name="Main" type="Spatial" index="0"]
 
@@ -75,8 +66,9 @@ far = 100.0
 [node name="Enemy" parent="." index="7" instance=ExtResource( 8 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1.5, 2.5 )
+script = ExtResource( 9 )
 
-[node name="Panel" type="Panel" parent="." index="8"]
+[node name="WinPanel" type="Panel" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -93,7 +85,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Label" type="Label" parent="Panel" index="0"]
+[node name="Label" type="Label" parent="WinPanel" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -114,7 +106,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Panel2" type="Panel" parent="." index="9"]
+[node name="LosePanel" type="Panel" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -131,7 +123,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Label" type="Label" parent="Panel2" index="0"]
+[node name="Label" type="Label" parent="LosePanel" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -152,70 +144,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Area" type="Area" parent="." index="10"]
-
-transform = Transform( -4.07302e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -4.07302e-08, 5.94709, 0.840706, 5.71035 )
-input_ray_pickable = false
-input_capture_on_drag = false
-space_override = 0
-gravity_point = false
-gravity_distance_scale = 0.0
-gravity_vec = Vector3( 0, -1, 0 )
-gravity = 9.8
-linear_damp = 0.1
-angular_damp = 1.0
-priority = 0.0
-monitoring = true
-monitorable = true
-collision_layer = 1
-collision_mask = 1
-audio_bus_override = false
-audio_bus_name = "Master"
-reverb_bus_enable = false
-reverb_bus_name = "Master"
-reverb_bus_amount = 0.0
-reverb_bus_uniformity = 0.0
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
-
-shape = SubResource( 1 )
-disabled = false
-_sections_unfolded = [ "Transform" ]
-
-[node name="Area2" type="Area" parent="." index="11"]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033864, 0, -9.55406e-09 )
-input_ray_pickable = false
-input_capture_on_drag = false
-space_override = 0
-gravity_point = false
-gravity_distance_scale = 0.0
-gravity_vec = Vector3( 0, -1, 0 )
-gravity = 9.8
-linear_damp = 0.1
-angular_damp = 1.0
-priority = 0.0
-monitoring = true
-monitorable = true
-collision_layer = 1
-collision_mask = 1
-audio_bus_override = false
-audio_bus_name = "Master"
-reverb_bus_enable = false
-reverb_bus_name = "Master"
-reverb_bus_amount = 0.0
-reverb_bus_uniformity = 0.0
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape" type="CollisionShape" parent="Area2" index="0"]
-
-transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 5.50425, 1.48702, 2.58296 )
-shape = SubResource( 2 )
-disabled = false
-_sections_unfolded = [ "Transform" ]
-
-[node name="DirectionalLight" type="DirectionalLight" parent="." index="12"]
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="10"]
 
 transform = Transform( -0.900915, -0.0142259, -0.433763, -0.144745, 0.952087, 0.269406, 0.409148, 0.305497, -0.859808, 0, 8.14466, 0 )
 layers = 1
@@ -245,8 +174,8 @@ _sections_unfolded = [ "Light", "Shadow" ]
 
 [connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
 
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_entered" from="Egg" to="." method="_on_Egg_body_entered"]
 
-[connection signal="body_entered" from="Area2" to="." method="_on_Area2_body_entered"]
+[connection signal="lose" from="Player" to="." method="_on_Player_lose"]
 
 

@@ -5,10 +5,10 @@ var direction = Vector3()
 var gravity = -9.8
 var velocity = Vector3()
 
+signal lose() 
+
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	connect("lose", self, "signal_handler")
 
 func _physics_process(delta):
 	direction = Vector3(0, 0, 0)
@@ -42,3 +42,4 @@ func _physics_process(delta):
 		var collision = get_slide_collision(0)
 		if collision.collider is RigidBody and collision.collider:
 			print("lose")
+			emit_signal("lose")
