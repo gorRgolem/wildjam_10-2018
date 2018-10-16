@@ -24,9 +24,9 @@ func _physics_process(delta):
 	direction = direction * speed * delta
 	
 	if velocity.y > 0:
-		gravity = -20
-	else:
 		gravity = -30
+	else:
+		gravity = -5
 	
 	velocity.y += gravity * delta
 	velocity.x = direction.x
@@ -35,4 +35,4 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 	
 	if is_on_floor() and Input.is_key_pressed(KEY_SPACE):
-		velocity.y = 5.5
+		velocity.y = 10
