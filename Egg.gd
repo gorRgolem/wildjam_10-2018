@@ -18,3 +18,4 @@ func _ready():
 func _on_Egg_body_entered(body):
 	if body is KinematicBody:
 		queue_free()
+		print("win")
