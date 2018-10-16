@@ -215,6 +215,34 @@ shape = SubResource( 2 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="12"]
+
+transform = Transform( -0.900915, -0.0142259, -0.433763, -0.144745, 0.952087, 0.269406, 0.409148, 0.305497, -0.859808, 0, 8.14466, 0 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 0.5
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.1
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.8
+directional_shadow_bias_split_scale = 0.25
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 200.0
+_sections_unfolded = [ "Light", "Shadow" ]
+
 [connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
