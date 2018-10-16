@@ -1,16 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Walls.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Egg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Egg.gd" type="Script" id=5]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player.gd" type="Script" id=7]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemy.gd" type="Script" id=9]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemy.gd" type="Script" id=7]
+[ext_resource path="res://assets/chiken01.tscn" type="PackedScene" id=8]
 
-[node name="Main" type="Spatial" index="0"]
+[node name="Main" type="Spatial"]
 
 transform = Transform( -2.8213e-07, 0, 1, 0, 1, 0, -1, 0, -2.8213e-07, 0, 0, 0 )
 script = ExtResource( 1 )
@@ -41,34 +40,12 @@ _sections_unfolded = [ "Transform" ]
 transform = Transform( -4.07302e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -4.07302e-08, 5.97499, 0.768978, 5.71718 )
 script = ExtResource( 5 )
 
-[node name="Player" parent="." index="6" instance=ExtResource( 6 )]
-
-transform = Transform( 0.5, 0, 2.65432e-14, 2.65431e-14, 8.14603e-08, -0.5, 0, 0.5, 8.14603e-08, 0.494893, 1.25591, -0.549923 )
-script = ExtResource( 7 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
-
-[node name="Camera" type="Camera" parent="Player" index="2"]
-
-transform = Transform( 0.00521848, 0.675555, -1.88244, 1.99999, -0.00283066, 0.00452852, -0.00113471, -1.88245, -0.67556, -1.43632, -0.0280207, -2.66694 )
-keep_aspect = 1
-cull_mask = 1048575
-environment = null
-h_offset = 0.0
-v_offset = 0.0
-doppler_tracking = 0
-projection = 0
-current = false
-fov = 116.28
-size = 1.0
-near = 0.05
-far = 100.0
-
-[node name="Enemy" parent="." index="7" instance=ExtResource( 8 )]
+[node name="Enemy" parent="." index="6" instance=ExtResource( 6 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1.5, 2.5 )
-script = ExtResource( 9 )
+script = ExtResource( 7 )
 
-[node name="WinPanel" type="Panel" parent="." index="8"]
+[node name="WinPanel" type="Panel" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -106,7 +83,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="LosePanel" type="Panel" parent="." index="9"]
+[node name="LosePanel" type="Panel" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -144,7 +121,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="DirectionalLight" type="DirectionalLight" parent="." index="10"]
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="9"]
 
 transform = Transform( -0.900915, -0.0142259, -0.433763, -0.144745, 0.952087, 0.269406, 0.409148, 0.305497, -0.859808, 0, 8.14466, 0 )
 layers = 1
@@ -172,9 +149,31 @@ directional_shadow_depth_range = 0
 directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Light", "Shadow" ]
 
-[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
+[node name="Player" parent="." index="10" instance=ExtResource( 8 )]
+
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0.680181, 0 )
+
+[node name="Camera" type="Camera" parent="Player" index="3"]
+
+transform = Transform( 0.999999, 6.74681e-08, 2.09293e-08, -6.7468e-08, 0.824431, 0.565962, 2.09295e-08, -0.565963, 0.82443, -0.223267, 2.62502, 0.930013 )
+visible = false
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 116.28
+size = 1.0
+near = 0.05
+far = 100.0
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="Egg" to="." method="_on_Egg_body_entered"]
+
+[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
 
 [connection signal="lose" from="Player" to="." method="_on_Player_lose"]
 
