@@ -824,7 +824,7 @@ tracks/26/keys = PoolRealArray( 0, 1, -9.53502e-10, 1.12499e-07, 2.62955e-09, 4.
 
 radius = 0.726857
 
-[node name="chicken" type="KinematicBody" index="0"]
+[node name="chicken" type="KinematicBody"]
 
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -1011,5 +1011,21 @@ blend_times = [  ]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.737493, 0.0670443 )
 shape = SubResource( 6 )
 disabled = false
+
+[node name="Camera" type="Camera" parent="." index="3"]
+
+transform = Transform( 1, 0, 0, 0, 0.984378, 0.176068, 0, -0.176068, 0.984378, 0, 2.27527, 2.50281 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 70.0
+size = 1.0
+near = 0.05
+far = 100.0
 
 
