@@ -1027,5 +1027,6 @@ fov = 70.0
 size = 1.0
 near = 0.05
 far = 100.0
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 

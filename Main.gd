@@ -17,6 +17,5 @@ func _on_Egg_body_entered(body):
 	if body is KinematicBody:
 		$WinPanel.show()
 
-
-func _on_Player_lose():
+func _on_Chicken_lose():
 	$LosePanel.show()
