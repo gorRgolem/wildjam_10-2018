@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/level.tscn" type="PackedScene" id=2]
@@ -8,10 +8,14 @@
 [ext_resource path="res://Egg.gd" type="Script" id=6]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemy.gd" type="Script" id=8]
+[ext_resource path="res://Main Menu/Grass Outline.tres" type="StyleBox" id=9]
+[ext_resource path="res://Main Menu/OratorStd.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Main Menu/Word.tres" type="StyleBox" id=11]
+[ext_resource path="res://Try Again.gd" type="Script" id=12]
 
 [node name="Main" type="Spatial" index="0"]
 
-transform = Transform( -2.8213e-07, 0, 1, 0, 1, 0, -1, 0, -2.8213e-07, 0, 0, 0 )
+transform = Transform( -2.8213e-007, 0, 1, 0, 1, 0, -1, 0, -2.8213e-007, 0, 0, 0 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
@@ -23,12 +27,14 @@ light_cull_mask = -1
 
 [node name="Chicken" parent="." index="2" instance=ExtResource( 4 )]
 
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 0 )
+transform = Transform( -1.62921e-007, 0, -1, 0, 1, 0, 1, 0, -1.62921e-007, 0, 0, 0 )
 _sections_unfolded = [ "Transform", "collision" ]
+speed = 3
+rot = 3
 
 [node name="Egg" parent="." index="3" instance=ExtResource( 5 )]
 
-transform = Transform( -4.07302e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -4.07302e-08, 5.97499, 0.25, 5.71718 )
+transform = Transform( -4.07302e-008, 0, 0.25, 0, 0.25, 0, -0.25, 0, -4.07302e-008, 5.97499, 0.25, 5.71718 )
 script = ExtResource( 6 )
 
 [node name="Enemy" parent="." index="4" instance=ExtResource( 7 )]
@@ -39,84 +45,159 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="WinPanel" type="Panel" parent="." index="5"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 405.0
-margin_top = 250.0
-margin_right = 605.0
-margin_bottom = 317.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -100.0
+margin_right = 300.0
+margin_bottom = 100.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/panel = ExtResource( 9 )
+_sections_unfolded = [ "Rect", "custom_styles" ]
 
 [node name="Label" type="Label" parent="WinPanel" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 71.0
-margin_top = 27.0
-margin_right = 124.0
-margin_bottom = 41.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -80.0
+margin_right = 192.0
+margin_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 10 )
 text = "You win!"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts", "custom_styles" ]
+
+[node name="Try Again" type="Button" parent="WinPanel" index="1"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -271.0
+margin_top = 20.0
+margin_right = 269.0
+margin_bottom = 107.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 11 )
+custom_styles/disabled = ExtResource( 11 )
+custom_styles/normal = ExtResource( 11 )
+custom_fonts/font = ExtResource( 10 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Play Again?"
+flat = false
+align = 1
+script = ExtResource( 12 )
+_sections_unfolded = [ "Rect", "custom_fonts", "custom_styles" ]
 
 [node name="LosePanel" type="Panel" parent="." index="6"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 405.0
-margin_top = 250.0
-margin_right = 605.0
-margin_bottom = 317.0
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -100.0
+margin_right = 300.0
+margin_bottom = 100.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/panel = ExtResource( 9 )
+_sections_unfolded = [ "Rect", "custom_styles" ]
 
 [node name="Label" type="Label" parent="LosePanel" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 71.0
-margin_top = 27.0
-margin_right = 124.0
-margin_bottom = 41.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -264.0
+margin_top = -80.0
+margin_right = 264.0
+margin_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 10 )
 text = "You lose..."
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts", "custom_styles" ]
+
+[node name="Try Again" type="Button" parent="LosePanel" index="1"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -246.0
+margin_top = 20.0
+margin_right = 246.0
+margin_bottom = 107.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 11 )
+custom_styles/disabled = ExtResource( 11 )
+custom_styles/normal = ExtResource( 11 )
+custom_fonts/font = ExtResource( 10 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Try Again?"
+flat = false
+align = 1
+script = ExtResource( 12 )
+_sections_unfolded = [ "Rect", "custom_fonts", "custom_styles" ]
 
 [connection signal="lose" from="Chicken" to="." method="_on_Chicken_lose"]
 
-[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
-
 [connection signal="body_entered" from="Egg" to="." method="_on_Egg_body_entered"]
+
+[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
 
 

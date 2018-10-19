@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Main Menu/Main Menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Egg.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/chiken01.dae" type="PackedScene" id=4]
+[ext_resource path="res://Main Menu/Word.tres" type="StyleBox" id=5]
+[ext_resource path="res://Main Menu/OratorStd.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Main Menu/head.png" type="Texture" id=7]
+
+[node name="Main Menu" type="Spatial"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60171, 0 )
+script = ExtResource( 1 )
+
+[node name="Spatial" type="Spatial" parent="." index="0" instance=ExtResource( 2 )]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Egg" type="Area" parent="." index="1" instance=ExtResource( 3 )]
+
+transform = Transform( -0.0697967, 0, -0.071613, 0, 0.1, 0, 0.071613, 0, -0.0697967, -17.4164, 0.0808737, 0.388265 )
+input_ray_pickable = false
+input_capture_on_drag = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision_layer = 1
+collision_mask = 1
+audio_bus_override = false
+audio_bus_name = "Master"
+reverb_bus_enable = false
+reverb_bus_name = "Master"
+reverb_bus_amount = 0.0
+reverb_bus_uniformity = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera" type="Camera" parent="." index="2"]
+
+transform = Transform( 0.0371048, -0.00825331, 0.0924939, 0, 0.0996042, 0.00888777, -0.0928614, -0.00329779, 0.0369579, -14.9516, 1.34459, 1.66694 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = true
+fov = 70.0
+size = 1.0
+near = 0.05
+far = 100.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Scene Root" type="Spatial" parent="." index="3" instance=ExtResource( 4 )]
+
+transform = Transform( -0.697967, 0, -0.71613, 0, 1, 0, 0.71613, 0, -0.697967, -17.5177, -0.432209, 0.583669 )
+
+[node name="Button" type="Button" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 266.0
+margin_top = 479.0
+margin_right = 758.0
+margin_bottom = 566.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Start Game"
+flat = false
+align = 1
+_sections_unfolded = [ "Material", "Mouse", "Rect", "Size Flags", "Theme", "custom_fonts", "custom_styles" ]
+
+[node name="head" type="Sprite" parent="." index="5"]
+
+position = Vector2( 501.983, 134.177 )
+texture = ExtResource( 7 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="6"]
+
+transform = Transform( -0.277653, -0.748289, 0.602472, -0.339284, 0.663097, 0.667225, -0.898774, -0.0191526, -0.437993, 0.0701255, 6.42366, -0.586354 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 1.0
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.1
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.8
+directional_shadow_bias_split_scale = 0.25
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 200.0
+_sections_unfolded = [ "Shadow", "Transform" ]
+
+
