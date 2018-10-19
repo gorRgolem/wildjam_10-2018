@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/level.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Egg.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Egg.gd" type="Script" id=6]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemy.gd" type="Script" id=8]
 
 [node name="Main" type="Spatial" index="0"]
 
@@ -31,13 +30,7 @@ _sections_unfolded = [ "Transform", "collision" ]
 transform = Transform( -4.07302e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -4.07302e-08, 5.97499, 0.25, 5.71718 )
 script = ExtResource( 6 )
 
-[node name="Enemy" parent="." index="4" instance=ExtResource( 7 )]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 2.5 )
-script = ExtResource( 8 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="WinPanel" type="Panel" parent="." index="5"]
+[node name="WinPanel" type="Panel" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -75,7 +68,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="LosePanel" type="Panel" parent="." index="6"]
+[node name="LosePanel" type="Panel" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -113,10 +106,12 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Enemy" parent="." index="6" instance=ExtResource( 7 )]
+
 [connection signal="lose" from="Chicken" to="." method="_on_Chicken_lose"]
 
-[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
-
 [connection signal="body_entered" from="Egg" to="." method="_on_Egg_body_entered"]
+
+[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
 
 

@@ -1,12 +1,16 @@
 extends Spatial
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+const safe_zone = 10
 
 func _ready():
 	$WinPanel.hide()
 	$LosePanel.hide()
+
+	randomize()
+	var range_size = 10
+	var randomXy = (randi() % range_size + safe_zone) * (-1 if randf() < 0.5 else 1)
+	$Enemy.translate(Vector3(randomXy, 1, randomXy))
+	$Egg.translate(Vector3(randomXy, 0, randi() % randomXy))
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
