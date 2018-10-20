@@ -176,7 +176,7 @@ func _process(delta):
 #	# Update game logic here.
 #	pass
 
-#func _physics_process(delta):
+func _physics_process(delta):
 #	direction = Vector3(0, 0, 0)
 #	if Input.is_action_pressed("ui_left"):
 #		direction.x -= 1
@@ -198,14 +198,14 @@ func _process(delta):
 #	velocity.x = direction.x
 #	velocity.z = direction.z
 #
-#	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
+	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 #
 #	if is_on_floor() and Input.is_key_pressed(KEY_SPACE):
 #		velocity.y = 10
-#
-#	var hitCount = get_slide_count()
-#	if hitCount > 0:
-#		var collision = get_slide_collision(0)
-#		if collision.collider is RigidBody and collision.collider:
-#			print("lose")
-#			emit_signal("lose")
+
+	var hitCount = get_slide_count()
+	if hitCount > 0:
+		var collision = get_slide_collision(0)
+		if collision.collider is RigidBody and collision.collider:
+			print("lose")
+			emit_signal("lose")
