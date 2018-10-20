@@ -9,7 +9,7 @@
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemy.gd" type="Script" id=8]
 
-[node name="Main" type="Spatial" index="0"]
+[node name="Main" type="Spatial"]
 
 transform = Transform( -2.8213e-07, 0, 1, 0, 1, 0, -1, 0, -2.8213e-07, 0, 0, 0 )
 script = ExtResource( 1 )
@@ -115,8 +115,8 @@ max_lines_visible = -1
 
 [connection signal="lose" from="Chicken" to="." method="_on_Chicken_lose"]
 
-[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
-
 [connection signal="body_entered" from="Egg" to="." method="_on_Egg_body_entered"]
+
+[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
 
 
