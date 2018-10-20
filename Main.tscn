@@ -13,11 +13,13 @@
 [ext_resource path="res://Main Menu/Word.tres" type="StyleBox" id=11]
 [ext_resource path="res://Try Again.gd" type="Script" id=12]
 
-[node name="Main" type="Spatial" index="0"]
+[node name="Main" type="Spatial"]
 
 transform = Transform( -2.8213e-007, 0, 1, 0, 1, 0, -1, 0, -2.8213e-007, 0, 0, 0 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+grid_x = 21
+grid_z = 21
 
 [node name="Level" parent="." index="0" instance=ExtResource( 2 )]
 
@@ -29,8 +31,6 @@ light_cull_mask = -1
 
 transform = Transform( -1.62921e-007, 0, -1, 0, 1, 0, 1, 0, -1.62921e-007, 0, 0, 0 )
 _sections_unfolded = [ "Transform", "collision" ]
-speed = 3
-rot = 3
 
 [node name="Egg" parent="." index="3" instance=ExtResource( 5 )]
 

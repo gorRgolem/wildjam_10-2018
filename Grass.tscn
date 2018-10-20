@@ -58,7 +58,7 @@ _sections_unfolded = [ "Flags", "Metallic", "Parameters" ]
 [sub_resource type="Animation" id=2]
 
 resource_name = "Snake"
-length = 0.4
+length = 0.5
 loop = true
 step = 0.1
 tracks/0/type = "value"
@@ -68,7 +68,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -80,7 +80,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -92,7 +92,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -104,7 +104,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -113,7 +113,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=3]
 
 resource_name = "Wind"
-length = 0.8
+length = 2.0
 loop = true
 step = 0.1
 tracks/0/type = "value"
@@ -123,7 +123,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -135,7 +135,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -147,7 +147,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -159,7 +159,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 7 ]
@@ -220,7 +220,7 @@ alpha_cut = 0
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
-frame = 3
+frame = 0
 region_enabled = false
 region_rect = Rect2( 0, 0, 0, 0 )
 _sections_unfolded = [ "Animation", "Flags", "Geometry", "Region", "Transform" ]
@@ -252,7 +252,7 @@ alpha_cut = 0
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
-frame = 3
+frame = 0
 region_enabled = false
 region_rect = Rect2( 0, 0, 0, 0 )
 _sections_unfolded = [ "Animation", "Flags", "Geometry", "Region", "Transform" ]
@@ -284,7 +284,7 @@ alpha_cut = 0
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
-frame = 3
+frame = 0
 region_enabled = false
 region_rect = Rect2( 0, 0, 0, 0 )
 _sections_unfolded = [ "Animation", "Flags", "Geometry", "Region", "Transform" ]
@@ -316,7 +316,7 @@ alpha_cut = 0
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
-frame = 3
+frame = 0
 region_enabled = false
 region_rect = Rect2( 0, 0, 0, 0 )
 _sections_unfolded = [ "Animation", "Flags", "Geometry", "Region", "Transform" ]
