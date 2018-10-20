@@ -20,8 +20,17 @@ func play_moved():
 	anim2.play("grass moved")
 	
 
-
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+func _on_StaticBody_body_entered(body):
+	
+	play_moved()
+	
+
+
+func _on_StaticBody_body_exited(body):
+	
+	play_swing()
+	pass # replace with function body
