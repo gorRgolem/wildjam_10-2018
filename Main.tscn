@@ -42,6 +42,8 @@ script = ExtResource( 6 )
 [node name="Enemy" parent="." index="4" instance=ExtResource( 7 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 2.5 )
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
@@ -198,8 +200,10 @@ _sections_unfolded = [ "Rect", "custom_fonts", "custom_styles" ]
 
 [connection signal="lose" from="Chicken" to="." method="_on_Chicken_lose"]
 
+[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
+
 [connection signal="body_entered" from="Egg" to="." method="_on_Egg_body_entered"]
 
-[connection signal="body_entered" from="Egg" to="Egg" method="_on_Egg_body_entered"]
+[connection signal="body_entered" from="Enemy" to="Enemy" method="_on_Enemy_body_entered"]
 
 

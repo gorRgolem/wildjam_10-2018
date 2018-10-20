@@ -2,6 +2,7 @@ extends RigidBody
 
 var speed = 12
 onready var player = get_node("../Chicken")
+var stop = false
 
 func _ready():
 	pass
@@ -12,5 +13,13 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	var player_pos = player.get_translation()
-	translate((player_pos - get_translation()).normalized() * speed * delta)
+	if stop == true:
+		translate(Vector3(0, 0, 0))
+	else:
+		var player_pos = player.get_translation()
+		translate((player_pos - get_translation()).normalized() * speed * delta)
+
+
+func _on_Enemy_body_entered(body):
+	if body is KinematicBody:
+		stop = true
