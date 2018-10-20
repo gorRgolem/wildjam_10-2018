@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main Menu/Main Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/level.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Main Menu/Word.tres" type="StyleBox" id=5]
 [ext_resource path="res://Main Menu/OratorStd.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Main Menu/head.png" type="Texture" id=7]
+[ext_resource path="res://Grass.tscn" type="PackedScene" id=8]
 
 [node name="Main Menu" type="Spatial" index="0"]
 
@@ -106,5 +107,35 @@ directional_shadow_bias_split_scale = 0.25
 directional_shadow_depth_range = 0
 directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Shadow", "Transform" ]
+
+[node name="Grass" parent="." index="7" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.7645, 2.38419e-007, 2.42301 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Grass2" parent="." index="8" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1336, 2.38419e-007, -0.562764 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Grass3" parent="." index="9" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3583, -2.38419e-007, -1.79255 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Grass4" parent="." index="10" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8152, -2.38419e-007, -1.79284 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Grass5" parent="." index="11" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9754, 2.38419e-007, 1.21173 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Grass6" parent="." index="12" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0739, 2.38419e-007, -1.79845 )
+_sections_unfolded = [ "Transform" ]
 
 

@@ -6,15 +6,19 @@ extends KinematicBody
 var im = InputMap
 var grounded = true
 
-var movement = {"forward" : 0, "left" : 0, "right" : 0 }
+var movement = {"forward" : 0, "backward" : 0, "left" : 0, "right" : 0, "jump" :0 }
 var current_state = "idle"
 var new_state = "idle"
 
 var fsm = {"idle" : {"enter" : "enter_idle", "exit" : "exit_idle"}, 
-			"walk" : {"enter" : "enter_walk", "exit" : "exit_walk"}
+			"walk" : {"enter" : "enter_walk", "exit" : "exit_walk"},
+			"back" : {"enter" : "enter_back", "exit" : "exit_back"},
+			"jump" : {"enter" : "enter_jump", "exit" : "exit_jump"}
 			}
 			
 onready var anims = get_node("AnimationPlayer")
+onready var main_cam = get_node("Camera")
+onready var jumpcam = get_node("jump_cam")
 
 export var speed = 12
 export var rot = 12
@@ -23,6 +27,9 @@ export var rot = 12
 var direction = Vector3()
 var gravity = -9.8
 var velocity = Vector3()
+var upspeed = 0
+export var jumpspeed = 22
+export var fall = 14
 
 signal lose() 
 
@@ -32,12 +39,18 @@ func _ready():
 	anims.play("idle")
 	
 	im.add_action("move_forward")
+	im.add_action("move_backward")
 	im.add_action("turn_left")
 	im.add_action("turn_right")
+	im.add_action("jump")
 	
 	var e1 = InputEventKey.new()
 	e1.scancode = KEY_UP
 	im.action_add_event("move_forward", e1)
+	
+	var e4 = InputEventKey.new()
+	e4.scancode = KEY_DOWN
+	im.action_add_event("move_backward", e4)
 	
 	var e2 = InputEventKey.new()
 	e2.scancode = KEY_LEFT
@@ -47,12 +60,21 @@ func _ready():
 	e3.scancode = KEY_RIGHT
 	im.action_add_event("turn_right", e3)
 	
+	var e5 = InputEventKey.new()
+	e5.scancode = KEY_SPACE
+	im.action_add_event("jump", e5)
+	
 	
 func set_movement() :
 	if Input.is_action_pressed("move_forward") :
 		movement["forward"] = 1
 	else :
 		movement["forward"] = 0
+		
+	if Input.is_action_pressed("move_backward") :
+		movement["backward"] = 1
+	else :
+		movement["backward"] = 0
 		
 	if Input.is_action_pressed("turn_left") :
 		movement["left"] = 1
@@ -63,13 +85,32 @@ func set_movement() :
 		movement["right"] = 1
 	else :
 		movement["right"] = 0
+		
+	if Input.is_action_pressed("jump") :
+		movement["jump"] = 1
+	else :
+		movement["jump"] = 0
 	
 func set_state():
 	if grounded == true :
-		if movement["forward"] == 1 :
-			new_state = "walk"
-		if movement["forward"] == 0 :
-			new_state = "idle"
+		if movement["jump"] ==1 :
+			grounded = false
+			new_state = "jump"
+		else : 
+			var f = movement["forward"] - movement["backward"]
+			if f == 1 : 
+				new_state = "walk"
+			elif f == -1 : 
+				new_state = "back"
+			else : new_state = "idle"
+#		if movement["forward"] == 1 :
+#			new_state = "walk"
+#
+#		if movement["backward"] == 1 :
+#			new_state = "back"
+#
+#		if movement["forward"] == 0 :
+#			new_state = "idle"
 			
 func check_state():
 	if new_state != current_state :
@@ -83,6 +124,23 @@ func enter_walk() :
 	anims.play("walk.001")
 func exit_walk() :
 	print("exit walk")
+	
+func enter_back() :
+	print("enter back")
+	anims.play("back")
+func exit_back() :
+	print("exit back")
+	
+func enter_jump() :
+	grounded = false
+	upspeed = jumpspeed
+	print("enter jump")
+	anims.play("jump")
+	jumpcam.make_current()
+func exit_jump() :
+	print("exit jump")
+	main_cam.make_current()
+	
 func enter_idle() :
 	print("enter idle")
 	anims.play("idle")
@@ -90,21 +148,23 @@ func exit_idle() :
 	print("exit idle")
 			
 func move(delta):
-	if movement["forward"] == 1 :
-		translate(Vector3(0,0,-speed*delta))
-	var drot = movement["left"] - movement["right"]
-	if drot == 1 :
-		rotation.y += rot*delta
-	elif drot == -1 :
-		rotation.y -= rot*delta
+#	if movement["forward"] == 1 :
+	if grounded == false :
+		upspeed = upspeed - fall*delta
+#			transform.origin.y += upspeed * delta
+		translate(Vector3(0,upspeed*delta,0))
+		if transform.origin.y <= 0 : 
+			transform.origin.y = 0
+			grounded = true
+	else : 
+		var mv = movement["forward"] - movement["backward"]
+		translate(Vector3(0,0,-speed*delta*mv))
+		var drot = movement["left"] - movement["right"]
+		if drot == 1 :
+			rotation.y += rot*delta
+		elif drot == -1 :
+			rotation.y -= rot*delta
 	
-	
-#func _input(event):  
-#	if Input.is_key_pressed(KEY_UP):
-#		movement["forward"] = 1
-#	else :
-#		movement["forward"] = 0
-        #code
 	
 
 func _process(delta):
@@ -116,36 +176,36 @@ func _process(delta):
 #	# Update game logic here.
 #	pass
 
-func _physics_process(delta):
-	direction = Vector3(0, 0, 0)
-	if Input.is_action_pressed("ui_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("ui_right"):
-		direction.x += 1
-	if Input.is_action_pressed("ui_up"):
-		direction.z -= 1
-	if Input.is_action_pressed("ui_down"):
-		direction.z += 1
-	direction = direction.normalized()
-	direction = direction * speed * delta
-	
-	if velocity.y > 0:
-		gravity = -30
-	else:
-		gravity = -5
-	
-	velocity.y += gravity * delta
-	velocity.x = direction.x
-	velocity.z = direction.z
-	
-	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
-	
-	if is_on_floor() and Input.is_key_pressed(KEY_SPACE):
-		velocity.y = 10
-		
-	var hitCount = get_slide_count()
-	if hitCount > 0:
-		var collision = get_slide_collision(0)
-		if collision.collider is RigidBody and collision.collider:
-			print("lose")
-			emit_signal("lose")
+#func _physics_process(delta):
+#	direction = Vector3(0, 0, 0)
+#	if Input.is_action_pressed("ui_left"):
+#		direction.x -= 1
+#	if Input.is_action_pressed("ui_right"):
+#		direction.x += 1
+#	if Input.is_action_pressed("ui_up"):
+#		direction.z -= 1
+#	if Input.is_action_pressed("ui_down"):
+#		direction.z += 1
+#	direction = direction.normalized()
+#	direction = direction * speed * delta
+#
+#	if velocity.y > 0:
+#		gravity = -30
+#	else:
+#		gravity = -5
+#
+#	velocity.y += gravity * delta
+#	velocity.x = direction.x
+#	velocity.z = direction.z
+#
+#	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
+#
+#	if is_on_floor() and Input.is_key_pressed(KEY_SPACE):
+#		velocity.y = 10
+#
+#	var hitCount = get_slide_count()
+#	if hitCount > 0:
+#		var collision = get_slide_collision(0)
+#		if collision.collider is RigidBody and collision.collider:
+#			print("lose")
+#			emit_signal("lose")

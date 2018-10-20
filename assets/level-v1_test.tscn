@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/level_v1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/chiken01.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/grass_cross.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PanoramaSky" id=1]
 
@@ -76,8 +77,8 @@ glow_levels/6 = false
 glow_levels/7 = false
 glow_intensity = 1.0
 glow_strength = 1.0
-glow_bloom = 1.0
-glow_blend_mode = 2
+glow_bloom = 0.2
+glow_blend_mode = 0
 glow_hdr_threshold = 1.0
 glow_hdr_scale = 2.0
 glow_bicubic_upscale = false
@@ -96,6 +97,10 @@ _sections_unfolded = [ "Adjustments", "Ambient Light", "Background", "Fog", "Glo
 environment = SubResource( 2 )
 
 [node name="chicken" parent="." index="2" instance=ExtResource( 2 )]
+
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+speed = 6
+rot = 3
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="3"]
 
@@ -124,5 +129,13 @@ directional_shadow_bias_split_scale = 0.25
 directional_shadow_depth_range = 0
 directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Light", "Shadow" ]
+
+[node name="grass_cross" parent="." index="4" instance=ExtResource( 3 )]
+
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -6.19817 )
+
+[node name="grass_cross2" parent="." index="5" instance=ExtResource( 3 )]
+
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.621112, 0.329761, -10.7657 )
 
 
