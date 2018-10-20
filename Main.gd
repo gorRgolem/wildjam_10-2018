@@ -8,9 +8,17 @@ func _ready():
 
 	randomize()
 	var range_size = 10
-	var randomXy = (randi() % range_size + safe_zone) * (-1 if randf() < 0.5 else 1)
-	$Enemy.translate(Vector3(randomXy, 1, randomXy))
-	$Egg.translate(Vector3(randomXy, 0, randi() % randomXy))
+	spawn_node($Enemy, range_size, safe_zone, 1)
+	spawn_node($Egg, range_size, safe_zone)
+	
+func spawn_node(node, range_size=0, margin=0, y_axis=0):
+	if node == null:
+		return
+	if range_size == 0:
+		node.translate(Vector3(0, 1, 0))
+		return
+	var randomXy = (randi() % range_size + margin) * (-1 if randf() < 0.5 else 1)
+	node.translate(Vector3(randomXy, y_axis, randomXy))
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
