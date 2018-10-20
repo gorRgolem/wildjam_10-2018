@@ -9,7 +9,7 @@
 [ext_resource path="res://Main Menu/head.png" type="Texture" id=7]
 [ext_resource path="res://Grass.tscn" type="PackedScene" id=8]
 
-[node name="Main Menu" type="Spatial"]
+[node name="Main Menu" type="Spatial" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60171, 0 )
 script = ExtResource( 1 )

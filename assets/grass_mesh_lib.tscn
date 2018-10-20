@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/grass_cross.tscn" type="PackedScene" id=1]
+
+[node name="grass_mesh_lib" type="Spatial"]
+
+[node name="grass_cross" parent="." index="0" instance=ExtResource( 1 )]
+
+
